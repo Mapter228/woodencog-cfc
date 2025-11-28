@@ -34,14 +34,15 @@ public class WoodenCog
     public static final Logger LOGGER = LogUtils.getLogger();
     private static final CreateRegistrate REGISTRATE = CreateRegistrate.create(WoodenCog.MOD_ID);
 
-    public WoodenCog(FMLJavaModLoadingContext ctx) {
+    public WoodenCog() {
+        FMLJavaModLoadingContext ctx = FMLJavaModLoadingContext.get();
         IEventBus modEventBus = ctx.getModEventBus();
         modEventBus.addListener(this::setup);
         modEventBus.addListener(this::onClientSetup);
         MinecraftForge.EVENT_BUS.register(this);
         REGISTRATE.registerEventListeners(modEventBus);
 
-        WoodenCogCommonConfigs.register(ctx);
+        WoodenCogCommonConfigs.register();
 
         WoodencogItems.register(modEventBus);
         WoodencogBlocks.register();
