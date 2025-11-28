@@ -149,8 +149,8 @@ public class WoodenCogCommonConfigs {
         MATERIAL_PROPERTIES.put(itemId, BUILDER.define(itemId, Arrays.asList(density,heatCapacity)));
     }
 
-    public static void register(FMLJavaModLoadingContext ctx) {
-        ctx.registerConfig(ModConfig.Type.COMMON, WoodenCogCommonConfigs.SPEC, "woodencog-common.toml");
+    public static void register() {
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, WoodenCogCommonConfigs.SPEC, "woodencog-common.toml");
     }
 }
 
