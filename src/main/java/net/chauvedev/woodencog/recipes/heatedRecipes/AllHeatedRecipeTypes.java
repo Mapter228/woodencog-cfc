@@ -9,10 +9,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
@@ -27,8 +26,8 @@ public enum AllHeatedRecipeTypes implements IRecipeTypeInfo {
 
     public static final Predicate<? super Recipe<?>> CAN_BE_AUTOMATED = (r) -> !r.getId().getPath().endsWith("_manual_only");
     private final ResourceLocation id;
-    private final RegistryObject<RecipeSerializer<?>> serializerObject;
-    private final @Nullable RegistryObject<RecipeType<?>> typeObject;
+    private final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<?>> serializerObject;
+    private final @Nullable DeferredHolder<RecipeType<?>, RecipeType<?>> typeObject;
     private final Supplier<RecipeType<?>> type;
 
     AllHeatedRecipeTypes(Supplier<RecipeSerializer<?>> serializerSupplier, Supplier<RecipeType<?>> typeSupplier, boolean registerType) {
@@ -79,7 +78,6 @@ public enum AllHeatedRecipeTypes implements IRecipeTypeInfo {
         return (T) type.get();
     }
 
-
     public <T extends HeatedProcessingRecipe<?>> RecipeType<T> getHeatedProccesignType() {
         return (RecipeType<T>) type.get();
     }
@@ -105,7 +103,7 @@ public enum AllHeatedRecipeTypes implements IRecipeTypeInfo {
         }
 
         static {
-            SERIALIZER_REGISTER = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, WoodenCog.MOD_ID);
+            SERIALIZER_REGISTER = DeferredRegister.create(Registries.RECIPE_SERIALIZER, WoodenCog.MOD_ID);
             TYPE_REGISTER = DeferredRegister.create(Registries.RECIPE_TYPE, WoodenCog.MOD_ID);
         }
     }
