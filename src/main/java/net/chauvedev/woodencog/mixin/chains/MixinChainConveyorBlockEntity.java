@@ -18,7 +18,7 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -105,7 +105,7 @@ public abstract class MixinChainConveyorBlockEntity implements ChainConveyorBloc
         for (Map.Entry<BlockPos, ItemLike> entry : connectionsChain.entrySet()) {
             CompoundTag entryTag = new CompoundTag();
             entryTag.put("Pos", NbtUtils.writeBlockPos(entry.getKey()));
-            ResourceLocation itemRS = ForgeRegistries.ITEMS.getKey(entry.getValue().asItem());
+            ResourceLocation itemRS = NeoForgeRegistries.ITEMS.getKey(entry.getValue().asItem());
             if(itemRS != null) entryTag.putString("Item", itemRS.toString());
             list.add(entryTag);
         }
@@ -119,7 +119,7 @@ public abstract class MixinChainConveyorBlockEntity implements ChainConveyorBloc
         for (int i = 0; i < list.size(); i++) {
             CompoundTag entryTag = list.getCompound(i);
             BlockPos pos = NbtUtils.readBlockPos(entryTag.getCompound("Pos"));
-            Item item = ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse(entryTag.getString("Item")));
+            Item item = NeoForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse(entryTag.getString("Item")));
             if (item != null) connectionsChain.put(pos, item);
         }
     }

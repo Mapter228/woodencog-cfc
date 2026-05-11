@@ -11,7 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 public class WoodenCogCompactingRecipeGen extends CompactingRecipeGen {
     public WoodenCogCompactingRecipeGen(PackOutput output) {
@@ -85,7 +85,7 @@ public class WoodenCogCompactingRecipeGen extends CompactingRecipeGen {
     }
 
     private Item getLooseRock(Rock rock) {
-        return ForgeRegistries.ITEMS.getValue(ResourceLocation.tryBuild(TerraFirmaCraft.MOD_ID,"rock/loose/"+rock.getSerializedName()));
+        return NeoForgeRegistries.ITEMS.getValue(ResourceLocation.tryBuild(TerraFirmaCraft.MOD_ID,"rock/loose/"+rock.getSerializedName()));
     }
 
 }

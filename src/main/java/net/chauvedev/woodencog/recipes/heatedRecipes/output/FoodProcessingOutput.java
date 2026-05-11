@@ -16,7 +16,7 @@ import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 import java.util.*;
 
@@ -119,7 +119,7 @@ public class FoodProcessingOutput extends DynamicProcessingOutput<List<ItemStack
             int count = GsonHelper.getAsInt(json, "count", 1);
             float chance = GsonHelper.isValidNode(json, "chance") ? GsonHelper.getAsFloat(json, "chance") : 1.0F;
 
-            ItemLike item = ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse(itemId));
+            ItemLike item = NeoForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse(itemId));
             if (item == null) {
                 WoodenCog.LOGGER.error("[WoodenCog] Unknown item in registry: " + ResourceLocation.tryParse(itemId));
                 return null;

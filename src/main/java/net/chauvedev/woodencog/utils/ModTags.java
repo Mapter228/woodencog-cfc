@@ -1,4 +1,5 @@
 package net.chauvedev.woodencog.utils;
+
 import net.chauvedev.woodencog.WoodenCog;
 import net.dries007.tfc.TerraFirmaCraft;
 import net.minecraft.core.registries.Registries;
@@ -13,10 +14,10 @@ import java.util.Objects;
 
 public class ModTags {
     public static class Compat {
-        public static final TagKey<Item> BREADS = TagKey.create(Registries.ITEM, Objects.requireNonNull(ResourceLocation.tryBuild("tfc", "foods/breads")));
-        public static final TagKey<Item> USABLE_IN_SANDWICH = TagKey.create(Registries.ITEM, ResourceLocation.tryBuild("tfc", "foods/usable_in_sandwich"));
+        public static final TagKey<Item> BREADS              = TagKey.create(Registries.ITEM, Objects.requireNonNull(ResourceLocation.tryBuild("tfc", "foods/breads")));
+        public static final TagKey<Item> USABLE_IN_SANDWICH  = TagKey.create(Registries.ITEM, ResourceLocation.tryBuild("tfc", "foods/usable_in_sandwich"));
         public static final TagKey<Item> USABLE_IN_JAM_SANDWICH = TagKey.create(Registries.ITEM, ResourceLocation.tryBuild("tfc", "foods/usable_in_jam_sandwich"));
-        public static final TagKey<Item> PRESERVES = TagKey.create(Registries.ITEM, ResourceLocation.tryBuild("tfc", "foods/preserves"));
+        public static final TagKey<Item> PRESERVES           = TagKey.create(Registries.ITEM, ResourceLocation.tryBuild("tfc", "foods/preserves"));
     }
 
     public static class Blocks {
@@ -24,18 +25,19 @@ public class ModTags {
             return BlockTags.create(WoodenCog.asResource(name));
         }
 
-        private static TagKey<Block> forgeTag(String name) {
-            ResourceLocation tagRS = ResourceLocation.tryBuild("forge", name);
+        private static TagKey<Block> cTag(String name) {
+            ResourceLocation tagRS = ResourceLocation.tryBuild("c", name);
             return tagRS != null ? BlockTags.create(tagRS) : null;
         }
     }
 
     public static class Items {
         public static final TagKey<Item> UNBURNABLE = modTag("unburnable");
-        public static final TagKey<Item> CHAINS = forgeTag("chains");
 
-        public static final TagKey<Item> COLORED_RAW_ALABASTER = tfcTag("colored_raw_alabaster");
-        public static final TagKey<Item> COLORED_BRICKS_ALABASTER = tfcTag("colored_bricks_alabaster");
+        public static final TagKey<Item> CHAINS = cTag("chains");
+
+        public static final TagKey<Item> COLORED_RAW_ALABASTER     = tfcTag("colored_raw_alabaster");
+        public static final TagKey<Item> COLORED_BRICKS_ALABASTER  = tfcTag("colored_bricks_alabaster");
         public static final TagKey<Item> COLORED_POLISHED_ALABASTER = tfcTag("colored_polished_alabaster");
 
         private static TagKey<Item> modTag(String name) {
@@ -48,8 +50,8 @@ public class ModTags {
             return tagRS != null ? ItemTags.create(tagRS) : null;
         }
 
-        private static TagKey<Item> forgeTag(String name) {
-            ResourceLocation tagRS = ResourceLocation.tryBuild("forge", name);
+        private static TagKey<Item> cTag(String name) {
+            ResourceLocation tagRS = ResourceLocation.tryBuild("c", name);
             return tagRS != null ? ItemTags.create(tagRS) : null;
         }
     }

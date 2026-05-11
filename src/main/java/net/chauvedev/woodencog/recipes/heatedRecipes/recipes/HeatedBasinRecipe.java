@@ -20,10 +20,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.IFluidHandler;
-import net.minecraftforge.items.IItemHandler;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import net.neoforged.neoforge.items.IItemHandler;
 
 import javax.annotation.Nonnull;
 import java.util.*;
@@ -62,11 +62,11 @@ public class HeatedBasinRecipe extends HeatedProcessingRecipe<Container> {
 
     private static boolean apply(BasinBlockEntity basin, Recipe<?> recipe, boolean test) {
         if(recipe instanceof HeatedBasinRecipe heatedRecipe){
-            Optional<IItemHandler> optionalAvailableItems = basin.getCapability(ForgeCapabilities.ITEM_HANDLER).resolve();
+            Optional<IItemHandler> optionalAvailableItems = basin.getCapability(Capabilities.ItemHandler.BLOCK).resolve();
             if(CogUtil.logConditional(optionalAvailableItems.isEmpty(), HeatedBasinRecipe.class,"blockEntity has no item handling capability")) return false;
             IItemHandler availableItems = optionalAvailableItems.get();
 
-            Optional<IFluidHandler> optionalAvailableFluids = basin.getCapability(ForgeCapabilities.FLUID_HANDLER).resolve();
+            Optional<IFluidHandler> optionalAvailableFluids = basin.getCapability(Capabilities.FluidHandler.BLOCK).resolve();
             if(CogUtil.logConditional(optionalAvailableFluids.isEmpty(), HeatedBasinRecipe.class,"blockEntity has no fluid handling capability")) return false;
             IFluidHandler availableFluids = optionalAvailableFluids.get();
 

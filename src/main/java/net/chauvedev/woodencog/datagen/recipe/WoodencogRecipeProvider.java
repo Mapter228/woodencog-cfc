@@ -35,8 +35,8 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -168,12 +168,12 @@ public class WoodencogRecipeProvider extends RecipeProvider {
     private void oreMeltingRecipes(Consumer<FinishedRecipe> consumer){
 
         DataGenStaticData.ORE_REGISTRY.forEach(ore -> {
-            Item smallOre = ForgeRegistries.ITEMS.getValue(TFCOreResourceLocation("small_"+ore.oreId()));
-            Item poorOre = ForgeRegistries.ITEMS.getValue(TFCOreResourceLocation("poor_"+ore.oreId()));
-            Item normalOre = ForgeRegistries.ITEMS.getValue(TFCOreResourceLocation("normal_"+ore.oreId()));
-            Item richOre = ForgeRegistries.ITEMS.getValue(TFCOreResourceLocation("rich_"+ore.oreId()));
+            Item smallOre = NeoForgeRegistries.ITEMS.getValue(TFCOreResourceLocation("small_"+ore.oreId()));
+            Item poorOre = NeoForgeRegistries.ITEMS.getValue(TFCOreResourceLocation("poor_"+ore.oreId()));
+            Item normalOre = NeoForgeRegistries.ITEMS.getValue(TFCOreResourceLocation("normal_"+ore.oreId()));
+            Item richOre = NeoForgeRegistries.ITEMS.getValue(TFCOreResourceLocation("rich_"+ore.oreId()));
 
-            Fluid metal = ForgeRegistries.FLUIDS.getValue(TFCMetalResourceLocation(ore.metalId()));
+            Fluid metal = NeoForgeRegistries.FLUIDS.getValue(TFCMetalResourceLocation(ore.metalId()));
 
             if(CogUtil.logConditional(metal == null,this.getClass(),"DataGen, metal is null can't generate melting recipes")) return;
 
@@ -206,10 +206,10 @@ public class WoodencogRecipeProvider extends RecipeProvider {
 
     private void metalRecipes(Consumer<FinishedRecipe> consumer){
         DataGenStaticData.METAL_REGISTRY.values().forEach(metal -> {
-            Item ingot = ForgeRegistries.ITEMS.getValue(TFCIngotResourceLocation(metal.id()));
-            Fluid fluidMetal = ForgeRegistries.FLUIDS.getValue(TFCMetalResourceLocation(metal.id()));
-            Item sheet = ForgeRegistries.ITEMS.getValue(TFCSheetIngotResourceLocation(metal.id()));
-            Item doubleIngot = ForgeRegistries.ITEMS.getValue(TFCDoubleIngotResourceLocation(metal.id()));
+            Item ingot = NeoForgeRegistries.ITEMS.getValue(TFCIngotResourceLocation(metal.id()));
+            Fluid fluidMetal = NeoForgeRegistries.FLUIDS.getValue(TFCMetalResourceLocation(metal.id()));
+            Item sheet = NeoForgeRegistries.ITEMS.getValue(TFCSheetIngotResourceLocation(metal.id()));
+            Item doubleIngot = NeoForgeRegistries.ITEMS.getValue(TFCDoubleIngotResourceLocation(metal.id()));
 
             //Ingot melting recipes
             new HeatedProcessingRecipeBuilder<>(HeatedMixingRecipe::new)

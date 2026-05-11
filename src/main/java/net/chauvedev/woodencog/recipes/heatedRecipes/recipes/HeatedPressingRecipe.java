@@ -10,10 +10,10 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.items.wrapper.RecipeWrapper;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.items.wrapper.RecipeWrapper;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
 
@@ -54,7 +54,7 @@ public class HeatedPressingRecipe extends HeatedProcessingRecipe<RecipeWrapper> 
     }
 
     public void addRequiredMachines(Set<ItemLike> list) {
-        list.add(ForgeRegistries.BLOCKS.getValue(Create.asResource("mechanical_press")));
+        list.add(NeoForgeRegistries.BLOCKS.getValue(Create.asResource("mechanical_press")));
     }
 
     @Override
